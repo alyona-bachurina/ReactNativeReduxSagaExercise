@@ -1,19 +1,20 @@
+'use strict';
 
 
-import * as types from './actionTypes';
+import * as types from './ActionTypes';
 
 export function login(username, password) {
-  return { type: types.LOGIN.TRY_LOGIN, username, password }
+  return { type: types.TRY_LOGIN, username, password }
 }
 
 export function loginSuccess(user) {
-  return { type: types.LOGIN.LOGIN_SUCCESS, user }
+  return { type: types.LOGIN_SUCCESS, user }
 }
 
 export function loginFailure(reason) {
-  return { type: types.LOGIN.LOGIN_FAILURE, reason }
+  return { type: types.LOGIN_FAILURE, reason }
 }
 
 export function logout() {
-  return { type: types.LOGIN.LOGOUT }
+  return { type: types.LOGOUT }
 }

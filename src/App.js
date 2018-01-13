@@ -1,23 +1,14 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+'use strict';
+
 
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-
-import { LoginScreen } from './screens/LoginScreen';
+import LoginScreen from './screens/LoginScreen';
 import { HomeScreen } from './screens/HomeScreen';
 
 
-export default class App extends Component<{}> {
+export class App extends Component {
   render() {
     const { isLoggedIn } = this.props;
 
@@ -29,12 +20,12 @@ export default class App extends Component<{}> {
   }
 }
 
-
 const mapStateToProps = function(state) {
-  const { user } = state;
+  const { auth } = state;
+
   return {
-    isLoggedIn: user.isLoggedIn,
+    isLoggedIn: auth.isLoggedIn,
   }
 };
 
-//connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App);

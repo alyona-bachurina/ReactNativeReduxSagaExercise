@@ -1,29 +1,46 @@
 'use strict';
 
 import React, { Component } from 'react'
-import {
-  StyleSheet,
-  View,
-  Image,
-  TextInput,
-  Text,
-} from 'react-native';
+import { StyleSheet, View, Image, Button, TextInput, Text } from 'react-native';
+import { connect } from 'react-redux';
+import * as loginActions from '../actions/LoginActions';
+import { bindActionCreators } from 'redux';
 
-export class LoginScreen extends Component<{}> {
+export class LoginScreen extends Component {
+
+  state = {
+      username: '',
+      password: ''
+  };
+
+  onlogin = () => {
+    this.props.do_login(this.state.username, this.state.password)
+  };
+
+
   render() {
+
+    const { username, password } = this.state;
+
+    let error;
+    if (this.props.auth.failure !== '') {
+      error = <Text style={{color: 'red', textAlign:'center'}}>{this.props.auth.failure}</Text>;
+    }
+
     return (
+
       <View style={styles.container}>
         <Text style={styles.header}>
-          Log In
+          Wellcome
         </Text>
-
+        {error}
         <View style={styles.field}>
         <Image style={styles.icon} source={require('../../resources/user.png')}/>
         <TextInput
           style={styles.input}
           placeholder="User name"
-          //onChangeText={email => this.setState({email})}
-          //value={email}
+          onChangeText={username => this.setState({username})}
+          value={username}
         />
         </View>
         <View style={styles.field}>
@@ -31,15 +48,16 @@ export class LoginScreen extends Component<{}> {
         <TextInput
           style={styles.input}
           placeholder="Password"
-          //onChangeText={password => this.setState({password})}
-          //value={password}
+          onChangeText={password => this.setState({password})}
+          value={password}
         />
         </View>
+
+        <Button name="envelope-o" onPress={this.onlogin} style={styles.button} title="Log In"/>
       </View>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: { flex: 1},
@@ -76,3 +94,16 @@ const styles = StyleSheet.create({
     paddingLeft: 10
   }
 });
+
+const mapStateToProps = (state, ownProps) => {
+    return state
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        do_login: (username, password) => { dispatch(loginActions.login(username, password)); }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

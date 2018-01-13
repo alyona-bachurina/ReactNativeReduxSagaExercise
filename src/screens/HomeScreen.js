@@ -10,7 +10,7 @@ import {
   Text,
 } from 'react-native';
 
-export class HomeScreen extends Component<{}> {
+export class HomeScreen extends Component{
   render() {
     return (
       <View style={styles.container}>

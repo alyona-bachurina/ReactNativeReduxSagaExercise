@@ -13,26 +13,22 @@ function *_login(){
   console.log("username, password:",username, password);
 
   if (username=='') {
-    console.log(1);
     yield put(actions.loginFailure("User name can not be empty"));
     return
   }
 
   if (password=='') {
-    console.log(2);
     yield put(actions.loginFailure("Password can not be empty"));
     return
   }
 
   if (username == 'Steven' && password == '1111111'  || username == "Ann" && password == '222222') {
-    const {user} = {"name": username}
-    yield put(actions.loginSuccess(user));
-    console.log(3);
+    console.log({ name : username});
+    yield put(actions.loginSuccess({ name : username}));
+
   }else{
-    yield put(actions.loginFailure("Wrong email or password"));
-    console.log(4);
+    yield put(actions.loginFailure("Wrong user name or password"));
   }
-  console.log(5);
 }
 
 export function* watchLogin() {

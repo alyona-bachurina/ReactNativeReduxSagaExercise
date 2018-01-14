@@ -23,8 +23,11 @@ export class LoginScreen extends Component {
     const { username, password } = this.state;
 
     let error;
-    if (this.props.auth.failure !== '') {
-      error = <Text style={{color: 'red', textAlign:'center'}}>{this.props.auth.failure}</Text>;
+
+    const { failureReason } = this.props.failure
+
+    if ( failureReason !== '') {
+      error = <Text style={{color: 'red', textAlign:'center'}}>{failureReason}</Text>;
     }
 
     return (
@@ -53,7 +56,7 @@ export class LoginScreen extends Component {
         />
         </View>
 
-        <Button name="envelope-o" onPress={this.onlogin} style={styles.button} title="Log In"/>
+        <Button name="_" onPress={this.onlogin} style={styles.button} title="Log In"/>
       </View>
     );
   }
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, ownProps) => {
-    return state
+  return state.auth
 }
 
 const mapDispatchToProps = (dispatch) => {

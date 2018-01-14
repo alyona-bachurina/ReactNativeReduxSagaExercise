@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-import App from './src/App';
-
 import configureStore from './src/store/configureStore';
 import { Provider } from 'react-redux';
+
+import App from './src/App';
 
 export default class Main extends Component{
 
@@ -19,7 +19,7 @@ export default class Main extends Component{
   render() {
       return (
           <Provider store={this.state.store}>
-            <App />
+             <App />
           </Provider>
         )
   }

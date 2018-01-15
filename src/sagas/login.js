@@ -1,34 +1,35 @@
 'use strict';
 
-import { call, put, select, take, takeEvery, fork} from 'redux-saga/effects';
+import {put, takeEvery} from 'redux-saga/effects';
 import * as types from '../actions/ActionTypes';
 import * as actions from '../actions/LoginActions'
 
-function *_login(action){
-  // let's implement some stub logic here
-  const { username, password } = action
+function* _login(action) {
+    // let's implement some stub logic here
+    const {username, password} = action;
 
-  console.log("username, password:",username, password);
+    console.log("username, password:", username, password);
 
-  if (username=='') {
-    yield put(actions.loginFailure("User name can not be empty"));
-    return
-  }
+    if (username === '') {
 
-  if (password=='') {
-    yield put(actions.loginFailure("Password can not be empty"));
-    return
-  }
+        yield put(actions.loginFailure("User name can not be empty"));
 
-  if (username == 'Steven' && password == '1111111'  || username == "Ann" && password == '222222') {
-    console.log({ name : username});
-    yield put(actions.loginSuccess({ name : username}));
+    } else if (password === '') {
 
-  }else{
-    yield put(actions.loginFailure("Wrong user name or password"));
-  }
+        yield put(actions.loginFailure("Password can not be empty"));
+
+    } else if (username === 'Steven' && password === '1111111' || username === "Ann" && password === '222222') {
+
+        console.log({name: username});
+        yield put(actions.loginSuccess({name: username}));
+
+    } else {
+
+        yield put(actions.loginFailure("Wrong user name or password"));
+
+    }
 }
 
 export function* watchLogin() {
-  yield takeEvery(types.TRY_LOGIN, _login);
+    yield takeEvery(types.TRY_LOGIN, _login);
 }

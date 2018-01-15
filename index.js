@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 
 import App from './src/App';
 
-export default class Main extends Component{
+export class Main extends Component{
 
   constructor() {
     super();

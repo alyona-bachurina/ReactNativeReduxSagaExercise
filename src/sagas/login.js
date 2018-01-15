@@ -1,8 +1,6 @@
 'use strict';
 
-import { AsyncStorage } from 'react-native';
 import { call, put, select, take, takeEvery, fork} from 'redux-saga/effects';
-import { LoginActions } from '../actions/LoginActions';
 import * as types from '../actions/ActionTypes';
 import * as actions from '../actions/LoginActions'
 

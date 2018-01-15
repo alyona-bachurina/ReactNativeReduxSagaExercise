@@ -1,17 +1,27 @@
 'use strict';
 
 import React, { Component } from 'react'
-import { StyleSheet, View, Text} from 'react-native';
+import { StyleSheet, View,  FlatList, ActivityIndicator} from 'react-native';
 import { connect } from 'react-redux';
+import { List, ListItem, Icon } from "react-native-elements";
 
-
-export default class StackoverflowScreen extends Component {
+export class StackoverflowScreen extends Component {
 
   render() {
+
+    console.log(this.props.questions[0])
+
     return (
-      <View style={styles.container}>
-        <Text>Stackoverflow</Text>
-      </View>
+        <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
+          <FlatList data={this.props.questions} renderItem={({ item }) => (
+            <ListItem
+              title = {item.title}
+              containerStyle={{ borderBottomWidth: 0 }}
+            />
+          )}
+          keyExtractor={item => item.id}
+        />
+        </List>
     )
   }
 }
@@ -24,3 +34,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 })
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    questions: state.stackoverflow.questions
+  }
+}
+
+export default connect(mapStateToProps)(StackoverflowScreen);

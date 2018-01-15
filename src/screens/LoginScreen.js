@@ -24,7 +24,7 @@ export class LoginScreen extends Component {
 
     let error;
 
-    const { failureReason } = this.props.failure
+    const failureReason = this.props.failure
 
     if ( failureReason !== '') {
       error = <Text style={{color: 'red', textAlign:'center'}}>{failureReason}</Text>;

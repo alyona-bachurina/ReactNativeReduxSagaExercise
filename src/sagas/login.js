@@ -6,9 +6,9 @@ import { LoginActions } from '../actions/LoginActions';
 import * as types from '../actions/ActionTypes';
 import * as actions from '../actions/LoginActions'
 
-function *_login(){
+function *_login(action){
   // let's implement some stub logic here
-  const { username, password } = (yield take(types.TRY_LOGIN));
+  const { username, password } = action
 
   console.log("username, password:",username, password);
 

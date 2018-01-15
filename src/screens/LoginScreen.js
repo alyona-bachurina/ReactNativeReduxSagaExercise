@@ -53,6 +53,7 @@ export class LoginScreen extends Component {
           placeholder="Password"
           onChangeText={password => this.setState({password})}
           value={password}
+          secureTextEntry = {true}
         />
         </View>
 

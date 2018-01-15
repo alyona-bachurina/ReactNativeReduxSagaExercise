@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Image, Button, TextInput, Text } from 'react-native';
 import { connect } from 'react-redux';
 import * as loginActions from '../actions/LoginActions';
-import { bindActionCreators } from 'redux';
+
 
 export class LoginScreen extends Component {
 
@@ -107,6 +107,5 @@ const mapDispatchToProps = (dispatch) => {
         do_login: (username, password) => { dispatch(loginActions.login(username, password)); }
     }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

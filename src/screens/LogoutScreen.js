@@ -1,16 +1,22 @@
 'use strict';
 
 import React, { Component } from 'react'
-import { StyleSheet, View, Text} from 'react-native';
+import { StyleSheet, View, Text, Button} from 'react-native';
 import { connect } from 'react-redux';
+import * as loginActions from '../actions/LoginActions';
 
 
-export default class LogoutScreen extends Component {
+export class LogoutScreen extends Component {
+
+  onlogout = () => {
+    this.props.do_logout()
+  };
 
   render() {
     return (
       <View style={styles.container}>
         <Text>Good bye</Text>
+        <Button name="_" onPress={this.onlogout} style={styles.button} title="Log Out"/>
       </View>
     )
   }
@@ -24,3 +30,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 })
+
+const mapStateToProps = (state, ownProps) => {
+  return { }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        do_logout: () => { dispatch(loginActions.logout()); }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogoutScreen);

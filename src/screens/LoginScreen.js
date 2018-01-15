@@ -1,7 +1,8 @@
 'use strict';
 
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, Button, TextInput, Text } from 'react-native';
+import { StyleSheet, View, Image, Button, TextInput, Text} from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { connect } from 'react-redux';
 import * as loginActions from '../actions/LoginActions';
 
@@ -31,8 +32,7 @@ export class LoginScreen extends Component {
     }
 
     return (
-
-      <View style={styles.container}>
+      <KeyboardAwareScrollView style={{ backgroundColor: '#ffffff' }} resetScrollToCoords={{ x: 0, y: 0 }} contentContainerStyle={styles.container} scrollEnabled={false}>
         <Text style={styles.header}>
           Wellcome
         </Text>
@@ -57,7 +57,7 @@ export class LoginScreen extends Component {
         </View>
 
         <Button name="_" onPress={this.onlogin} style={styles.button} title="Log In"/>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
